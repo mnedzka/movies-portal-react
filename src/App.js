@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './components/navbar';
-import Counters from './components/counters';
+import NavBar from './components/Navbar';
+import Counters from './components/Counters';
 import Movies from './components/Movies';
 
 class App extends Component {
