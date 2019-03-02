@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import NavBar from './components/Navbar';
 import Counters from './components/Counters';
 import Movies from './components/Movies';
+import NavBarRouter from './components/common/NavbarRouter';
 import './index.scss';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -40,19 +42,26 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
-        <main className='container'>
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
-          <Movies />
-        </main>
-      </React.Fragment>
+      <main className='container'>
+        <NavBarRouter />
+        <Route
+          path='/counters'
+          render={props => (
+            <React.Fragment>
+              <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
+              <Counters
+                {...props}
+                counters={this.state.counters}
+                onReset={this.handleReset}
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
+                onDelete={this.handleDelete}
+              />
+            </React.Fragment>
+          )}
+        />
+        <Route path='/' component={Movies} exact />
+      </main>
     );
   }
 }
