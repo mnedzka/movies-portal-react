@@ -3,8 +3,12 @@ import NavBar from './components/Navbar';
 import Counters from './components/Counters';
 import Movies from './components/Movies';
 import NavBarRouter from './components/common/NavbarRouter';
+import NotFound from './components/common/NotFound';
 import './index.scss';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Customers from './components/Customers';
+import Rentals from './components/Rentals';
+import MovieForm from './components/MovieForm';
 
 class App extends Component {
   state = {
@@ -44,23 +48,30 @@ class App extends Component {
     return (
       <main className='container'>
         <NavBarRouter />
-        <Route
-          path='/counters'
-          render={props => (
-            <React.Fragment>
-              <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
-              <Counters
-                {...props}
-                counters={this.state.counters}
-                onReset={this.handleReset}
-                onIncrement={this.handleIncrement}
-                onDecrement={this.handleDecrement}
-                onDelete={this.handleDelete}
-              />
-            </React.Fragment>
-          )}
-        />
-        <Route path='/' component={Movies} exact />
+        <Switch>
+          <Route
+            path='/counters/:name?'
+            render={props => (
+              <React.Fragment>
+                <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
+                <Counters
+                  {...props}
+                  counters={this.state.counters}
+                  onReset={this.handleReset}
+                  onIncrement={this.handleIncrement}
+                  onDecrement={this.handleDecrement}
+                  onDelete={this.handleDelete}
+                />
+              </React.Fragment>
+            )}
+          />
+          <Route path='/movies' component={Movies} exact />
+          <Route path='/not-found' component={NotFound} />
+          <Route path='/rentals' component={Rentals} />
+          <Route path='/customers' component={Customers} />
+          <Redirect from='/' to='/movies' exact />
+          <Redirect to='/not-found' />
+        </Switch>
       </main>
     );
   }
