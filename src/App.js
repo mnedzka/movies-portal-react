@@ -65,10 +65,11 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route path='/movies' component={Movies} exact />
-          <Route path='/not-found' component={NotFound} />
+          <Route path='/movies/:id' component={MovieForm} exact />
+          <Route path='/movies/' component={Movies} exact />
           <Route path='/rentals' component={Rentals} />
           <Route path='/customers' component={Customers} />
+          <Route path='/not-found' component={NotFound} />
           <Redirect from='/' to='/movies' exact />
           <Redirect to='/not-found' />
         </Switch>
