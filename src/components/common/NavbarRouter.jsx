@@ -30,6 +30,11 @@ const NavBarRouter = () => {
             Rentals
           </NavLink>
         </li>
+        <li class='nav-item'>
+          <NavLink className='nav-link' to='/login'>
+            Login
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
