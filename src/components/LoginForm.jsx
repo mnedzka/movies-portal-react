@@ -36,16 +36,15 @@ class LoginForm extends Component {
     const errors = this.validate();
     this.setState({ errors: errors || {} });
     if (errors) return;
-    // const username = this.username.current.value;
   };
 
   validateProperty = ({ name, value }) => {
-    if (name === 'username') {
-      if (value.trim() === '') return 'Username is required';
-    }
-    if (name === 'password') {
-      if (value.trim() === '') return 'Password is required';
-    }
+    const obj = { [name]: value };
+
+    const schema = { [name]: this.schema[name] };
+    const { error } = Joi.validate(obj, schema);
+
+    return error ? error.details[0].message : null;
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -80,7 +79,9 @@ class LoginForm extends Component {
             onChange={this.handleChange}
             error={errors.password}
           />
-          <button className='btn btn-primary'>Login</button>
+          <button disbaled={this.validate()} className='btn btn-primary'>
+            Login
+          </button>
         </form>
       </div>
     );
