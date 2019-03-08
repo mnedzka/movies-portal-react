@@ -4,12 +4,13 @@ import Counters from './components/Counters';
 import Movies from './components/Movies';
 import NavBarRouter from './components/common/NavbarRouter';
 import NotFound from './components/common/NotFound';
-import './index.scss';
-import { Route, Switch, Redirect } from 'react-router-dom';
 import Customers from './components/Customers';
 import Rentals from './components/Rentals';
 import MovieForm from './components/MovieForm';
 import LoginForm from './components/LoginForm';
+import Register from './components/Register';
+import './index.scss';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -67,6 +68,7 @@ class App extends Component {
             )}
           />
           <Route path='/login' component={LoginForm} exact />
+          <Route path='/register' component={Register} exact />
           <Route path='/movies/:id' component={MovieForm} exact />
           <Route path='/movies/' component={Movies} exact />
           <Route path='/rentals' component={Rentals} />
