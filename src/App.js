@@ -6,9 +6,9 @@ import NavBarRouter from './components/common/NavbarRouter';
 import NotFound from './components/common/NotFound';
 import Customers from './components/Customers';
 import Rentals from './components/Rentals';
-import MovieForm from './components/MovieForm';
 import LoginForm from './components/LoginForm';
-import Register from './components/Register';
+import RegisterForm from './components/RegisterForm';
+import MovieForm from './components/MovieForm';
 import './index.scss';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
@@ -68,7 +68,7 @@ class App extends Component {
             )}
           />
           <Route path='/login' component={LoginForm} exact />
-          <Route path='/register' component={Register} exact />
+          <Route path='/register' component={RegisterForm} exact />
           <Route path='/movies/:id' component={MovieForm} exact />
           <Route path='/movies/' component={Movies} exact />
           <Route path='/rentals' component={Rentals} />
